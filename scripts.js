@@ -1,88 +1,117 @@
-document.addEventListener('DOMContentLoaded', () => {
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ottoman Legacy - 3D Ultra Modern Concept</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Text:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header class="glass-nav">
+        <div class="logo">OTTOMAN LEGACY 3D</div>
+        <nav>
+            <a href="#epochen-3d">3D-Karten</a>
+            <a href="#details">Details</a>
+            <a href="#architektur">Architektur</a>
+        </nav>
+    </header>
+
+    <section id="hero" class="hero-section">
+        <div class="hero-content">
+            <h1>DAS ERBE DES IMPERIUMS</h1>
+            <p>Ein modernes Fenster in die Geschichte des Osmanischen Reiches.</p>
+            <button class="glass-button">Jetzt Entdecken</button>
+        </div>
+        <div class="parallax-bg"></div>
+    </section>
     
-    // Bestehende Parallax und Scroll Animation Logik
-    const parallaxBg = document.querySelector('.parallax-bg');
-    const sections = document.querySelectorAll('.content-section');
+    <section id="epochen-3d" class="content-section">
+        <h2>Epochen als interaktive 3D-Karten</h2>
+        <div class="card-container">
+            <div class="flip-card" data-era="Aufstieg">
+                <div class="flip-card-inner glass-card">
+                    <div class="flip-card-front">
+                        <h3>AUFSTIEG (1299–1453)</h3>
+                        <p>Tippen/Hovern für Details...</p>
+                    </div>
+                    <div class="flip-card-back">
+                        <p>**Dein Text über die frühe Expansion** und die Eroberung von Bursa kommt hier hin.</p>
+                        <span class="era-marker">Phase I</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="flip-card" data-era="Blütezeit">
+                <div class="flip-card-inner glass-card">
+                    <div class="flip-card-front">
+                        <h3>BLÜTEZEIT (1453–1683)</h3>
+                        <p>Tippen/Hovern für Details...</p>
+                    </div>
+                    <div class="flip-card-back">
+                        <p>**Dein Text über Süleyman den Prächtigen** und die goldene Ära in Istanbul kommt hier hin.</p>
+                        <span class="era-marker">Phase II</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="flip-card" data-era="Niedergang">
+                <div class="flip-card-inner glass-card">
+                    <div class="flip-card-front">
+                        <h3>NIEDERGANG (1683–1922)</h3>
+                        <p>Tippen/Hovern für Details...</p>
+                    </div>
+                    <div class="flip-card-back">
+                        <p>**Dein Text über Reformversuche**, Kriege und die Auflösung des Reiches kommt hier hin.</p>
+                        <span class="era-marker">Phase III</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    const observer = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('is-visible');
-                const animatedItems = entry.target.querySelectorAll('.flip-card, .parallax-image');
-                animatedItems.forEach((item, index) => {
-                    setTimeout(() => {
-                        item.style.opacity = '1';
-                        item.style.transform = 'translateY(0) scale(1)';
-                    }, index * 150);
-                });
-                // observer.unobserve(entry.target); // Deaktivieren, wenn der Effekt bei jedem Scroll sichtbar sein soll
-            } else {
-                 // Fügt Animationen beim Verlassen hinzu, optional
-                 // entry.target.classList.remove('is-visible'); 
-            }
-        });
-    }, {
-        rootMargin: '0px',
-        threshold: 0.1
-    });
+    <section id="details" class="content-section">
+        <h2>Wichtige Persönlichkeiten & Themen</h2>
+        <div class="accordion-container">
+            <div class="accordion-item glass-card">
+                <button class="accordion-header">
+                    Sultan Mehmed II. (Der Eroberer)
+                    <span class="icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <p>**Hier kommt der detaillierte Text** über die Eroberung Konstantinopels und seine kulturellen Beiträge.</p>
+                </div>
+            </div>
+            
+            <div class="accordion-item glass-card">
+                <button class="accordion-header">
+                    Das Harem und seine Macht
+                    <span class="icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <p>**Hier kommt der detaillierte Text** über die Organisation des Harems und die Rolle der Valide Sultan.</p>
+                </div>
+            </div>
+            </div>
+    </section>
 
-    sections.forEach(section => {
-        observer.observe(section);
-    });
+    <section id="architektur" class="content-section">
+        <h2>Architektonische Meisterwerke</h2>
+        <div class="scroll-animation-text">
+            <p>Die osmanische Baukunst vereint byzantinische und islamische Traditionen zu einzigartigen Formen.</p>
+        </div>
+        <div class="image-gallery">
+            <img src="https://via.placeholder.com/600x400?text=Moschee+1" class="parallax-image" alt="Moschee 1">
+            <img src="https://via.placeholder.com/600x400?text=Bruecke+2" class="parallax-image" alt="Brücke 2">
+            <img src="https://via.placeholder.com/600x400?text=Palast+3" class="parallax-image" alt="Palast 3">
+            </div>
+    </section>
 
-    window.addEventListener('scroll', () => {
-        const scrollPosition = window.pageYOffset;
-        if (parallaxBg) {
-            parallaxBg.style.transform = `translateY(${scrollPosition * 0.4}px) scale(1.1)`;
-        }
-        fluidColorShift(scrollPosition);
-    });
-
-    // Fluid Color Shift (bleibt gleich)
-    function fluidColorShift(scrollPos) {
-        const maxScroll = document.body.scrollHeight - window.innerHeight;
-        const ratio = scrollPos / maxScroll;
-        const hue = 200 + (ratio * 40); 
-        const saturation = 10 + (ratio * 10); 
-        document.body.style.background = `linear-gradient(135deg, hsl(${hue}deg, ${saturation}%, 95%), hsl(${hue + 20}deg, ${saturation + 5}%, 94%))`;
-    }
-    fluidColorShift(0);
-
-    // NEU: Akkordeon Funktionalität (Ausklappen)
-    const accordionHeaders = document.querySelectorAll('.accordion-header');
-
-    accordionHeaders.forEach(header => {
-        header.addEventListener('click', () => {
-            const item = header.closest('.accordion-item');
-            const isActive = item.classList.contains('active');
-
-            // Schließe alle anderen (iOS-Stil: Nur eines ist offen)
-            document.querySelectorAll('.accordion-item.active').forEach(activeItem => {
-                if (activeItem !== item) {
-                    activeItem.classList.remove('active');
-                }
-            });
-
-            // Toggle das aktuelle Element
-            if (!isActive) {
-                item.classList.add('active');
-            } else {
-                item.classList.remove('active');
-            }
-        });
-    });
-
-    // NEU: 3D-Karten-Flip auf Mobile (da Hover schlecht funktioniert)
-    const flipCards = document.querySelectorAll('.flip-card');
-
-    flipCards.forEach(card => {
-        card.addEventListener('click', (e) => {
-             // Wenn es ein Mobilgerät ist (oder wir so tun)
-            if (window.innerWidth <= 768) {
-                // Verhindert das Scrollen, wenn man auf die Karte tippt
-                e.preventDefault(); 
-                card.classList.toggle('flipped');
-            }
-        });
-    });
-});
+    <footer>
+        <p>© 2025 Ottoman Legacy Concept. Alle Rechte vorbehalten.</p>
+    </footer>
+    
+    <script src="scripts.js"></script>
+</body>
+</html>
